@@ -3,6 +3,7 @@
   margin-top: 20px;
 }
 
+/* Общие стили для списков */
 ul {
   list-style: none;
   padding: 0;
@@ -13,4 +14,54 @@ li {
   margin: 5px 0;
   padding: 10px;
   border-radius: 4px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.task-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  margin: auto;
+}
+
+/* Стили для контейнера с ошибкой 404 */
+.not-found-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.not-found-container h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.not-found-container p {
+  margin-bottom: 20px;
+}
+
+/* Стили для группы ввода */
+.input-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* Стили для текстовых полей и кнопок */
+.text-input,
+.action-button,
+.back-button,
+.cancel-button,
+.edit-button,
+.delete-button {
+  margin: 5px;
+}
+
+/* Отдельные стили для кнопок на странице задач */
+.task-details .edit-button,
+.task-details .delete-button {
+  margin-top: 10px;
 }

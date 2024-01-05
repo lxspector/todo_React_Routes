@@ -1,78 +1,25 @@
-import { useState } from 'react';
-import { useTodos } from './hooks/useTodos';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import HomePage from './components/HomePage'; // Путь к вашему компоненту HomePage
+import TaskPage from './components/TaskPage'; // Путь к вашему компоненту TaskPage
+import NotFoundPage from './components/NotFoundPage'; // Путь к вашему компоненту NotFoundPage
+import './App.css';
 
-const App = () => {
-  const {
-    newTodo,
-    setNewTodo,
-    searchTerm,
-    setSearchTerm,
-    sorted,
-    setSorted,
-    displayedTodos,
-    addTodo,
-    deleteTodo,
-    updateTodo,
-  } = useTodos();
-
-  const [editing, setEditing] = useState(null);
-  const [editingText, setEditingText] = useState('');
-
+function App() {
   return (
-    <div className="app">
-      <h1>Todo List</h1>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Add new todo"
-      />
-      <button onClick={addTodo}>Add</button>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search todos"
-      />
-      <button onClick={() => setSorted(!sorted)}>Sort Alphabetically</button>
-      <ul>
-        {displayedTodos.map((todo) => (
-          <li key={todo.id}>
-            {editing === todo.id ? (
-              <>
-                <input
-                  type="text"
-                  value={editingText}
-                  onChange={(e) => setEditingText(e.target.value)}
-                />
-                <button
-                  onClick={() => {
-                    updateTodo(todo.id, editingText);
-                    setEditing(null);
-                  }}
-                >
-                  Save
-                </button>
-              </>
-            ) : (
-              <>
-                <span>{todo.title} </span>
-                <button
-                  onClick={() => {
-                    setEditing(todo.id);
-                    setEditingText(todo.title);
-                  }}
-                >
-                  Edit
-                </button>
-              </>
-            )}
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/task/:id" element={<TaskPage />} />
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

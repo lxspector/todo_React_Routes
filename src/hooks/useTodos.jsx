@@ -19,6 +19,8 @@ export const useTodos = (initialTodos = []) => {
   };
 
   const addTodo = async () => {
+    if (!newTodo.trim()) return; // Проверка на пустую строку
+
     await fetch('http://localhost:5000/todos', {
       method: 'POST',
       headers: {
